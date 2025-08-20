@@ -3,11 +3,22 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build:named": "cd examples/named-exports && vite build",
-    "build:class-optimized": "cd examples/class-examples/optimized && vite build",
-    "build:class-heavy": "cd examples/class-examples/heavy && vite build",
+    "build:vite-named": "cd examples/named-exports && vite build",
+    "build:vite-class-optimized": "cd examples/class-examples/optimized && vite build",
+    "build:vite-class-heavy": "cd examples/class-examples/heavy && vite build",
+    "build:turbo-named": "cd examples/turbopack-tests/named-exports && npm run build",
+    "build:turbo-class-optimized": "cd examples/turbopack-tests/class-optimized && npm run build",
+    "build:turbo-class-heavy": "cd examples/turbopack-tests/class-heavy && npm run build",
+    "build:webpack-named": "cd examples/turbopack-tests/named-exports && npm run build-webpack",
+    "build:webpack-class-optimized": "cd examples/turbopack-tests/class-optimized && npm run build-webpack",
+    "build:webpack-class-heavy": "cd examples/turbopack-tests/class-heavy && npm run build-webpack",
+    "install:turbopack": "cd examples/turbopack-tests/named-exports && npm install && cd ../class-optimized && npm install && cd ../class-heavy && npm install",
     "clean": "rm -rf dist",
-    "test": "npm run clean && npm run build:named && npm run build:class-optimized && npm run build:class-heavy && node compare-bundles.js"
+    "test:vite": "npm run clean && npm run build:vite-named && npm run build:vite-class-optimized && npm run build:vite-class-heavy && node compare-bundles.js vite",
+    "test:turbopack": "npm run build:turbo-named && npm run build:turbo-class-optimized && npm run build:turbo-class-heavy && node compare-bundles.js turbopack",
+    "test:webpack": "npm run build:webpack-named && npm run build:webpack-class-optimized && npm run build:webpack-class-heavy && node compare-bundles.js webpack",
+    "test:all": "npm run test:vite && npm run test:turbopack && npm run test:webpack",
+    "test": "npm run test:vite"
   },
   "devDependencies": {
     "vite": "^5.0.0",

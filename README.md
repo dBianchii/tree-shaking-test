@@ -1,6 +1,6 @@
 # Tree Shaking Test: Classes vs Named Exports
 
-This test demonstrates the differences in bundle sizes between using static class methods vs named exports when only importing a subset of functionality.
+This test demonstrates the differences in bundle sizes between using static class methods vs named exports when only importing a subset of functionality across different bundlers.
 
 ## Project Structure
 
@@ -8,22 +8,25 @@ This test demonstrates the differences in bundle sizes between using static clas
 tree-shaking-test/
 ├── examples/
 │   ├── heavy-dependency.js       # Shared heavy dependency
-│   ├── named-exports/            # ✅ Best practice example
+│   ├── named-exports/            # ✅ Vite/Rollup tests
 │   │   ├── utils.js
 │   │   ├── main.js
 │   │   └── vite.config.js
-│   └── class-examples/
-│       ├── optimized/            # ⚠️ Good class implementation
+│   ├── class-examples/           # ⚠️ Vite/Rollup class tests
+│   │   ├── optimized/
+│   │   └── heavy/
+│   └── turbopack-tests/          # 🚀 Next.js/Turbopack tests
+│       ├── heavy-dependency.js
+│       ├── named-exports/        # Next.js + named exports
+│       │   ├── pages/index.js
 │       │   ├── utils.js
-│       │   ├── main.js
-│       │   └── vite.config.js
-│       └── heavy/                # ❌ Poor class implementation
-│           ├── utils.js
-│           ├── main.js
-│           └── vite.config.js
+│       │   ├── next.config.js
+│       │   └── package.json
+│       ├── class-optimized/      # Next.js + optimized class
+│       └── class-heavy/          # Next.js + heavy class
 ├── dist/                         # Generated bundles
 ├── package.json
-├── compare-bundles.js           # Bundle analysis script
+├── compare-bundles.js           # Multi-bundler analysis script
 └── README.md
 ```
 
@@ -46,34 +49,85 @@ tree-shaking-test/
 
 ## Key Findings
 
-1. **Named exports always win** - Provide the smallest bundles
+### Universal Principles
+1. **Named exports consistently win** - Smallest bundles across all bundlers
 2. **Classes can work well** - When written carefully without static fields
-3. **Static fields are dangerous** - They force evaluation of heavy dependencies
-4. **Import patterns matter** - How you structure code affects tree-shaking
+3. **Static fields are dangerous** - Force evaluation of heavy dependencies across all bundlers
+4. **Import patterns matter** - Code structure affects tree-shaking regardless of bundler
 
-## Running the Test
+### Bundler-Specific Insights
+- **Vite/Rollup**: Excellent tree-shaking with aggressive dead code elimination
+- **Turbopack**: Next.js's new bundler with modern tree-shaking optimizations
+- **Webpack**: Mature but sometimes less aggressive tree-shaking
 
+### Test Features
+- 🚀 **Turbopack Integration**: Test Next.js's cutting-edge bundler
+- ⚡ **Vite Baseline**: Industry-standard tree-shaking reference
+- ⚙️ **Webpack Comparison**: See how traditional bundling performs
+- 🔍 **Cross-bundler Analysis**: Compare results across different tools
+
+## Running the Tests
+
+### Setup
 ```bash
-# Install dependencies
+# Install main dependencies
 npm install
 
-# Run all tests and compare bundles
+# Install Turbopack test dependencies
+npm run install:turbopack
+```
+
+### Run Individual Bundler Tests
+```bash
+# Test Vite/Rollup (default)
 npm test
+# or
+npm run test:vite
 
-# Run individual tests
-npm run build:named
-npm run build:class-optimized
-npm run build:class-heavy
+# Test Turbopack
+npm run test:turbopack
 
-# Clean generated files
+# Test Webpack (Next.js fallback)
+npm run test:webpack
+
+# Test all bundlers
+npm run test:all
+```
+
+### Individual Build Commands
+```bash
+# Vite builds
+npm run build:vite-named
+npm run build:vite-class-optimized
+npm run build:vite-class-heavy
+
+# Turbopack builds
+npm run build:turbo-named
+npm run build:turbo-class-optimized
+npm run build:turbo-class-heavy
+
+# Webpack builds
+npm run build:webpack-named
+npm run build:webpack-class-optimized
+npm run build:webpack-class-heavy
+
+# Clean all generated files
 npm run clean
 ```
 
-## Expected Results
+## Bundler Comparison
 
-- **Named exports**: Smallest bundle size
-- **Class optimized**: Slightly larger than named exports
-- **Class heavy**: Significantly larger due to forced dependency evaluation
+### Expected Results Across Bundlers
+
+| Bundler | Named Exports | Class Optimized | Class Heavy |
+|---------|---------------|-----------------|-------------|
+| **Vite/Rollup** | Smallest | +40-60% | +60-80% |
+| **Turbopack** | TBD | TBD | TBD |
+| **Webpack** | TBD | TBD | TBD |
+
+- **Named exports**: Should be smallest across all bundlers
+- **Class optimized**: Performance varies by bundler tree-shaking capability
+- **Class heavy**: Largest due to forced dependency evaluation
 
 ## Best Practices
 
