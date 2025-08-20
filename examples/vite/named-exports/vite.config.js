@@ -7,7 +7,7 @@ export default defineConfig({
       name: 'NamedExports',
       fileName: 'named-exports'
     },
-    outDir: '../../dist/named-exports',
+    outDir: '../../../dist/named-exports',
     rollupOptions: {
       output: {
         format: 'es'
