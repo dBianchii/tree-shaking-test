@@ -1,4 +1,4 @@
-import { processHeavyData, heavyComputation } from '../../heavy-dependency.js';
+import { processHeavyData, heavyComputation } from '../heavy-dependency.js';
 
 export class SomethingUtils {
   static funcA() {

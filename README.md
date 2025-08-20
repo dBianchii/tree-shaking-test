@@ -7,15 +7,15 @@ This test demonstrates the differences in bundle sizes between using static clas
 ```
 tree-shaking-test/
 ├── examples/
-│   ├── heavy-dependency.js       # Shared heavy dependency
-│   ├── named-exports/            # ✅ Vite/Rollup tests
-│   │   ├── utils.js
-│   │   ├── main.js
-│   │   └── vite.config.js
-│   ├── class-examples/           # ⚠️ Vite/Rollup class tests
-│   │   ├── optimized/
-│   │   └── heavy/
-│   └── turbopack-tests/          # 🚀 Next.js/Turbopack tests
+│   ├── vite/                     # ✅ Vite/Rollup tests  
+│   │   ├── named-exports/        # Named exports example
+│   │   │   ├── utils.js
+│   │   │   ├── main.js
+│   │   │   └── vite.config.js
+│   │   └── class-examples/       # Class-based examples
+│   │       ├── optimized/
+│   │       └── heavy/
+│   └── turbopack/                # 🚀 Next.js/Turbopack tests
 │       ├── heavy-dependency.js
 │       ├── named-exports/        # Next.js + named exports
 │       │   ├── pages/index.js
@@ -33,17 +33,17 @@ tree-shaking-test/
 ## Test Scenarios
 
 ### 1. Named Exports (✅ Best)
-- **Location**: `examples/named-exports/`
+- **Location**: `examples/vite/named-exports/`
 - **Pattern**: Individual function exports
 - **Tree-shaking**: Excellent - unused functions and dependencies are removed
 
 ### 2. Class Optimized (⚠️ Good)
-- **Location**: `examples/class-examples/optimized/`
+- **Location**: `examples/vite/class-examples/optimized/`
 - **Pattern**: Clean class with lazy imports
 - **Tree-shaking**: Good - modern bundlers can remove unused methods
 
 ### 3. Class Heavy (❌ Worst)
-- **Location**: `examples/class-examples/heavy/`
+- **Location**: `examples/vite/class-examples/heavy/`
 - **Pattern**: Class with static fields that force evaluation
 - **Tree-shaking**: Poor - static fields prevent tree-shaking
 
