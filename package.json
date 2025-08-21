@@ -5,7 +5,7 @@
   "scripts": {
     "clean": "git clean -xdf",
 
-    "build:vite": "cd examples/vite/example1 && vite build",
+    "build:vite": "cd examples/vite/example1 && npm i && vite build",
     "build:turbopack": "cd examples/turbopack/example1 && npm i && npm run build",
     "build:webpack": "cd examples/turbopack/example1 && npm i && npm run build-webpack",
 
