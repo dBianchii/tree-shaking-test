@@ -13,17 +13,3 @@ export const HEAVY_DATA = new Array(500000).fill(0).map((_, i) => ({
     }
   }
 }));
-
-export function processHeavyData() {
-  console.log('Processing heavy data...');
-  return HEAVY_DATA.reduce((acc, item) => acc + item.metadata.properties.weight, 0);
-}
-
-export function heavyComputation() {
-  console.log('Doing heavy computation...');
-  let result = 0;
-  for (let i = 0; i < 1000000; i++) {
-    result += Math.sin(i) * Math.cos(i);
-  }
-  return result;
-}
