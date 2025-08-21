@@ -1,4 +1,4 @@
-import { SomethingUtils } from './utils.js';
+import { funcA } from './utils.js';
 
 
-console.log(SomethingUtils.funcA());
+console.log(funcA());

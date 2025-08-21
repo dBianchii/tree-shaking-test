@@ -7,12 +7,13 @@
     "build": "next build --turbo",
     "build:webpack": "next build",
     "start": "next start",
-    "test:turbopack": "git clean -xdf && pnpm run build && node ../../compare-bundles.js turbopack",
-    "test:webpack": "git clean -xdf && pnpm run build:webpack && node ../../compare-bundles.js webpack"
+    "test:turbopack": "pnpm run build && node ../../compare-bundles.js turbopack",
+    "test:webpack": "pnpm run build:webpack && node ../../compare-bundles.js webpack"
   },
   "dependencies": {
-    "next": "^15.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "15.5.0",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "unwanted-package": "workspace:*"
   }
 }

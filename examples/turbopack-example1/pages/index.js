@@ -1,7 +1,7 @@
-import { SomethingUtils } from '../utils.js';
+import { funcA } from '../utils.js';
 
 export default function HomePage() {
-  const result = SomethingUtils.funcA();
+  const result = funcA();
   
   return (
     <div>
