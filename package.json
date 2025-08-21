@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "clean": "git clean -xdf",
+
     "build:vite": "cd examples/vite/example1 && vite build",
-    "install:turbopack": "cd examples/turbopack/example1 && npm install",
-    "build:turbopack": "cd examples/turbopack/example1 && npm run build",
-    "clean": "rm -rf dist",
+    "build:turbopack": "cd examples/turbopack/example1 && npm i && npm run build",
+    "build:webpack": "cd examples/turbopack/example1 && npm i && npm run build-webpack",
+
     "test:vite": "npm run clean && npm run build:vite && node compare-bundles.js vite",
-    "test:turbopack": "npm run build:turbopack && node compare-bundles.js turbopack",
-    "test:webpack": "npm run build:webpack-named && npm run build:webpack-class-optimized && npm run build:webpack-class-heavy && node compare-bundles.js webpack",
-    "test:all": "npm run test:vite && npm run test:turbopack && npm run test:webpack",
-    "test": "npm run test:vite"
+    "test:turbopack": "npm run clean && npm run build:turbopack && node compare-bundles.js turbopack",
+    "test:webpack": "npm run clean && npm run build:webpack && node compare-bundles.js webpack",
+
+    "test:all": "npm run test:vite && npm run test:turbopack && npm run test:webpack"
   },
   "devDependencies": {
     "vite": "^5.0.0",

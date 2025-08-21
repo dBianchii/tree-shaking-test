@@ -55,8 +55,8 @@ if (bundlerType === 'vite') {
   bundleContent = jsFiles.map(readBundleContent).join('\n');
 } else if (bundlerType === 'webpack') {
   console.log('\n=== Webpack Tree-shaking Test ===');
-  bundleSize = getTotalBundleSize('dist/webpack-example1');
-  const jsFiles = findJSFiles('dist/webpack-example1');
+  bundleSize = getTotalBundleSize('dist/turbopack-class-heavy/_next/static/chunks');
+  const jsFiles = findJSFiles('dist/turbopack-class-heavy/_next/static/chunks');
   bundleContent = jsFiles.map(readBundleContent).join('\n');
 }
 
