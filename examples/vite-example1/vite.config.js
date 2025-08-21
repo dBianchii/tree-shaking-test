@@ -4,10 +4,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'main.js',
-      name: 'ClassHeavy',
-      fileName: 'class-heavy'
+      name: 'ViteExample',
+      fileName: 'vite-example'
     },
-    outDir: '../../dist/class-heavy',
     rollupOptions: {
       output: {
         format: 'es'
