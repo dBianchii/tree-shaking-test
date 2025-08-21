@@ -7,7 +7,7 @@ export default defineConfig({
       name: 'ClassHeavy',
       fileName: 'class-heavy'
     },
-    outDir: '../../../dist/class-heavy',
+    outDir: '../../dist/class-heavy',
     rollupOptions: {
       output: {
         format: 'es'

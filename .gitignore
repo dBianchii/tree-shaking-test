@@ -6,3 +6,15 @@ node_modules
 .env.production.local
 dist
 .next
+
+# pnpm
+.pnpm-debug.log*
+.pnpm-store/
+
+# Build outputs
+examples/*/dist/
+examples/*/.next/
+
+# Package manager lockfiles (we'll use pnpm)
+package-lock.json
+yarn.lock

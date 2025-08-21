@@ -50,13 +50,13 @@ if (bundlerType === 'vite') {
   bundleContent = readBundleContent('dist/class-heavy/class-heavy.js');
 } else if (bundlerType === 'turbopack') {
   console.log('\n=== Turbopack Tree-shaking Test ===');
-  bundleSize = getTotalBundleSize('examples/turbopack/example1/.next/static/chunks');
-  const jsFiles = findJSFiles('examples/turbopack/example1/.next/static/chunks');
+  bundleSize = getTotalBundleSize('examples/turbopack-example1/.next/static/chunks');
+  const jsFiles = findJSFiles('examples/turbopack-example1/.next/static/chunks');
   bundleContent = jsFiles.map(readBundleContent).join('\n');
 } else if (bundlerType === 'webpack') {
   console.log('\n=== Webpack Tree-shaking Test ===');
-  bundleSize = getTotalBundleSize('dist/turbopack-class-heavy/_next/static/chunks');
-  const jsFiles = findJSFiles('dist/turbopack-class-heavy/_next/static/chunks');
+  bundleSize = getTotalBundleSize('examples/turbopack-example1/.next/static/chunks');
+  const jsFiles = findJSFiles('examples/turbopack-example1/.next/static/chunks');
   bundleContent = jsFiles.map(readBundleContent).join('\n');
 }
 

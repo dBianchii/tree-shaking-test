@@ -2,23 +2,7 @@
   "name": "tree-shaking-test",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "clean": "git clean -xdf",
-
-    "build:vite": "cd examples/vite/example1 && npm i && vite build",
-    "build:turbopack": "cd examples/turbopack/example1 && npm i && npm run build",
-    "build:webpack": "cd examples/turbopack/example1 && npm i && npm run build-webpack",
-
-    "test:vite": "npm run clean && npm run build:vite && node compare-bundles.js vite",
-    "test:turbopack": "npm run clean && npm run build:turbopack && node compare-bundles.js turbopack",
-    "test:webpack": "npm run clean && npm run build:webpack && node compare-bundles.js webpack",
-
-    "test:all": "npm run test:vite && npm run test:turbopack && npm run test:webpack"
-  },
-  "devDependencies": {
-    "vite": "^5.0.0",
-    "next": "^15.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  }
+  "private": true,
+  "devDependencies": {},
+  "packageManager": "pnpm@8.0.0"
 }
