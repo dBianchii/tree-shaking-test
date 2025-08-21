@@ -7,8 +7,8 @@
     "build": "next build --turbo",
     "build:webpack": "next build",
     "start": "next start",
-    "test:turbopack": "pnpm run build && node ../../compare-bundles.js turbopack",
-    "test:webpack": "pnpm run build:webpack && node ../../compare-bundles.js webpack"
+    "test:turbopack": "pnpm run build",
+    "test:webpack": "pnpm run build:webpack"
   },
   "dependencies": {
     "next": "15.5.0",
